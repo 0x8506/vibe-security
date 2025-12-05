@@ -40,15 +40,15 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
 export function getAITypeDescription(aiType: AIType): string {
   switch (aiType) {
     case "claude":
-      return "Claude Code (.claude/)";
+      return "Claude Code (.claude/skills/)";
     case "cursor":
-      return "Cursor (.cursor/ + .shared/)";
+      return "Cursor (.cursor/commands/)";
     case "windsurf":
-      return "Windsurf (.windsurf/ + .shared/)";
+      return "Windsurf (.windsurf/workflows/)";
     case "antigravity":
-      return "Antigravity (.agent/ + .shared/)";
+      return "Antigravity (.agent/workflows/)";
     case "copilot":
-      return "GitHub Copilot (.github/ + .shared/)";
+      return "GitHub Copilot (.github/prompts/)";
     case "all":
       return "All AI assistants";
   }

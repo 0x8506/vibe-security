@@ -11,7 +11,7 @@ export async function fetchReleases(): Promise<Release[]> {
   const response = await fetch(url, {
     headers: {
       Accept: "application/vnd.github.v3+json",
-      "User-Agent": "uipro-cli",
+      "User-Agent": "vibesec-cli",
     },
   });
 
@@ -28,7 +28,7 @@ export async function getLatestRelease(): Promise<Release> {
   const response = await fetch(url, {
     headers: {
       Accept: "application/vnd.github.v3+json",
-      "User-Agent": "uipro-cli",
+      "User-Agent": "vibesec-cli",
     },
   });
 
@@ -45,7 +45,7 @@ export async function getReleaseByTag(tag: string): Promise<Release> {
   const response = await fetch(url, {
     headers: {
       Accept: "application/vnd.github.v3+json",
-      "User-Agent": "uipro-cli",
+      "User-Agent": "vibesec-cli",
     },
   });
 

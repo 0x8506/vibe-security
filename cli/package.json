@@ -1,6 +1,6 @@
 {
   "name": "vibe-security",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Security scanner and fixer for Vibe Coder - find, verify and fix security vulnerabilities",
   "type": "module",
   "bin": {
