@@ -16,7 +16,7 @@ program
   .description(
     "Vibe Security - Find, verify and fix security vulnerabilities in your code"
   )
-  .version("1.0.6");
+  .version("1.0.7");
 
 // Security commands
 program
