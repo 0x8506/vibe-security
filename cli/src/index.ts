@@ -66,6 +66,7 @@ program
   .description("Install security rules for AI coding assistant")
   .option("-a, --ai <type>", `AI assistant type (${AI_TYPES.join(", ")})`)
   .option("-f, --force", "Overwrite existing files")
+  .option("-v, --version <tag>", "Install specific version (e.g., v1.0.0)")
   .action(async (options) => {
     if (options.ai && !AI_TYPES.includes(options.ai)) {
       console.error(`Invalid AI type: ${options.ai}`);
@@ -75,6 +76,7 @@ program
     await initCommand({
       ai: options.ai as AIType | undefined,
       force: options.force,
+      version: options.version,
     });
   });
 

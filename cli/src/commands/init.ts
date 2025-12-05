@@ -8,6 +8,7 @@ import { AI_TYPES } from "../types/index.js";
 import { copyFolders } from "../utils/extract.js";
 import { detectAIType, getAITypeDescription } from "../utils/detect.js";
 import { logger } from "../utils/logger.js";
+import { getLatestRelease, getReleaseByTag } from "../utils/github.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // From dist/index.js -> ../assets (one level up to cli/, then assets/)
@@ -16,10 +17,27 @@ const ASSETS_DIR = join(__dirname, "..", "assets");
 interface InitOptions {
   ai?: AIType;
   force?: boolean;
+  version?: string;
 }
 
 export async function initCommand(options: InitOptions): Promise<void> {
   logger.title("Vibe Security Installer");
+
+  // Show version info if specified
+  if (options.version) {
+    const spinner = ora(`Fetching version ${options.version}...`).start();
+    try {
+      const release = await getReleaseByTag(options.version);
+      spinner.succeed(`Using version: ${chalk.cyan(release.tag_name)}`);
+    } catch (error) {
+      spinner.fail(`Version ${options.version} not found`);
+      if (error instanceof Error) {
+        logger.error(error.message);
+      }
+      logger.info("Run 'vibesec versions' to see available versions");
+      process.exit(1);
+    }
+  }
 
   let aiType = options.ai;
 

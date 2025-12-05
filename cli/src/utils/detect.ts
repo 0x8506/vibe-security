@@ -1,6 +1,6 @@
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-import type { AIType } from '../types/index.js';
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import type { AIType } from "../types/index.js";
 
 interface DetectionResult {
   detected: AIType[];
@@ -10,20 +10,20 @@ interface DetectionResult {
 export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   const detected: AIType[] = [];
 
-  if (existsSync(join(cwd, '.claude'))) {
-    detected.push('claude');
+  if (existsSync(join(cwd, ".claude"))) {
+    detected.push("claude");
   }
-  if (existsSync(join(cwd, '.cursor'))) {
-    detected.push('cursor');
+  if (existsSync(join(cwd, ".cursor"))) {
+    detected.push("cursor");
   }
-  if (existsSync(join(cwd, '.windsurf'))) {
-    detected.push('windsurf');
+  if (existsSync(join(cwd, ".windsurf"))) {
+    detected.push("windsurf");
   }
-  if (existsSync(join(cwd, '.agent'))) {
-    detected.push('antigravity');
+  if (existsSync(join(cwd, ".agent"))) {
+    detected.push("antigravity");
   }
-  if (existsSync(join(cwd, '.github'))) {
-    detected.push('copilot');
+  if (existsSync(join(cwd, ".github"))) {
+    detected.push("copilot");
   }
 
   // Suggest based on what's detected
@@ -31,7 +31,7 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
   if (detected.length === 1) {
     suggested = detected[0];
   } else if (detected.length > 1) {
-    suggested = 'all';
+    suggested = "all";
   }
 
   return { detected, suggested };
@@ -39,17 +39,17 @@ export function detectAIType(cwd: string = process.cwd()): DetectionResult {
 
 export function getAITypeDescription(aiType: AIType): string {
   switch (aiType) {
-    case 'claude':
-      return 'Claude Code (.claude/skills/)';
-    case 'cursor':
-      return 'Cursor (.cursor/commands/ + .shared/)';
-    case 'windsurf':
-      return 'Windsurf (.windsurf/workflows/ + .shared/)';
-    case 'antigravity':
-      return 'Antigravity (.agent/workflows/ + .shared/)';
-    case 'copilot':
-      return 'GitHub Copilot (.github/prompts/ + .shared/)';
-    case 'all':
-      return 'All AI assistants';
+    case "claude":
+      return "Claude Code (.claude/)";
+    case "cursor":
+      return "Cursor (.cursor/ + .shared/)";
+    case "windsurf":
+      return "Windsurf (.windsurf/ + .shared/)";
+    case "antigravity":
+      return "Antigravity (.agent/ + .shared/)";
+    case "copilot":
+      return "GitHub Copilot (.github/ + .shared/)";
+    case "all":
+      return "All AI assistants";
   }
 }
