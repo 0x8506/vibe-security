@@ -60,7 +60,7 @@ program
     });
   });
 
-// Original UI/UX commands (kept for compatibility)
+// Original Vibe Security commands (kept for compatibility)
 program
   .command("init")
   .description("Install security rules for AI coding assistant")

@@ -1,25 +1,25 @@
-import chalk from 'chalk';
-import ora from 'ora';
-import { getLatestRelease } from '../utils/github.js';
-import { logger } from '../utils/logger.js';
-import { initCommand } from './init.js';
-import type { AIType } from '../types/index.js';
+import chalk from "chalk";
+import ora from "ora";
+import { getLatestRelease } from "../utils/github.js";
+import { logger } from "../utils/logger.js";
+import { initCommand } from "./init.js";
+import type { AIType } from "../types/index.js";
 
 interface UpdateOptions {
   ai?: AIType;
 }
 
 export async function updateCommand(options: UpdateOptions): Promise<void> {
-  logger.title('UI/UX Pro Max Updater');
+  logger.title("Vibe Security Updater");
 
-  const spinner = ora('Checking for updates...').start();
+  const spinner = ora("Checking for updates...").start();
 
   try {
     const release = await getLatestRelease();
     spinner.succeed(`Latest version: ${chalk.cyan(release.tag_name)}`);
 
     console.log();
-    logger.info('Running update (same as init with latest version)...');
+    logger.info("Running update (same as init with latest version)...");
     console.log();
 
     await initCommand({
@@ -27,7 +27,7 @@ export async function updateCommand(options: UpdateOptions): Promise<void> {
       force: true,
     });
   } catch (error) {
-    spinner.fail('Update check failed');
+    spinner.fail("Update check failed");
     if (error instanceof Error) {
       logger.error(error.message);
     }
