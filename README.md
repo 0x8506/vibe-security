@@ -77,6 +77,11 @@ vibesec init --ai windsurf  # For Windsurf
 vibesec init --ai copilot   # For GitHub Copilot
 vibesec init --ai antigravity # For Antigravity
 vibesec init --ai all       # For all assistants
+
+# Version Management
+vibesec versions              # List available versions
+vibesec update                # Update to latest version
+vibesec init --version v1.0.0 # Install specific version
 ```
 
 ## Usage

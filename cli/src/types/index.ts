@@ -37,10 +37,10 @@ export const AI_TYPES: AIType[] = [
 
 export const AI_FOLDERS: Record<Exclude<AIType, "all">, string[]> = {
   claude: [".claude"],
-  cursor: [".cursor", ".shared"],
-  windsurf: [".windsurf", ".shared"],
-  antigravity: [".agent", ".shared"],
-  copilot: [".github", ".shared"],
+  cursor: [".cursor"],
+  windsurf: [".windsurf"],
+  antigravity: [".agent"],
+  copilot: [".github"],
 };
 
 // Security types
