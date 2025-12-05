@@ -6,6 +6,48 @@
 npm install -g vibe-security
 ```
 
+## Usage
+
+### Claude Code
+
+The skill activates automatically when you request security scanning or code review. Just chat naturally:
+
+```
+Scan my code for security vulnerabilities
+Fix the SQL injection issues in my project
+Check my authentication implementation for security issues
+```
+
+### Cursor / Windsurf / Antigravity
+
+Use the slash command to invoke the skill:
+
+```
+/vibe-security Scan my code for security vulnerabilities
+/vibe-security Fix the SQL injection issues in my project
+/vibe-security Check my authentication implementation for security issues
+```
+
+### GitHub Copilot
+
+In VS Code with Copilot, type `/` in chat to see available prompts, then select vibe-security:
+
+```
+/vibe-security Scan my code for security vulnerabilities
+/vibe-security Fix the SQL injection issues in my project
+/vibe-security Check my authentication implementation for security issues
+```
+
+### Example Prompts
+
+- **Scan my code for security vulnerabilities**
+- **Fix hardcoded secrets in my project**
+- **Check for SQL injection vulnerabilities**
+- **Review my authentication implementation**
+- **Find and fix XSS vulnerabilities**
+- **Verify security best practices**
+- **Install security guidelines for Claude**
+
 ## Quick Start
 
 ### 1. Scan Your Code
