@@ -1,27 +1,32 @@
-# uipro-cli
+# vibe-security
 
-CLI to install Vibe Security skill for AI coding assistants.
+Security scanner and fixer for AI coding assistants - find, verify and fix security vulnerabilities.
 
 ## Installation
 
 ```bash
-npm install -g uipro-cli
+npm install -g vibe-security
 ```
 
 ## Usage
 
 ```bash
-# Install for specific AI assistant
-uipro init --ai claude      # Claude Code
-uipro init --ai cursor      # Cursor
-uipro init --ai windsurf    # Windsurf
-uipro init --ai antigravity # Antigravity
-uipro init --ai all         # All assistants
+# Security Scanning
+vibesec scan                # Scan for vulnerabilities
+vibesec verify              # Verify security posture
 
-# Other commands
-uipro versions              # List available versions
-uipro update                # Update to latest version
-uipro init --version v1.0.0 # Install specific version
+# Install security rules for AI assistants
+vibesec init --ai claude      # Claude Code
+vibesec init --ai cursor      # Cursor
+vibesec init --ai windsurf    # Windsurf
+vibesec init --ai antigravity # Antigravity
+vibesec init --ai copilot     # GitHub Copilot
+vibesec init --ai all         # All assistants
+
+# Version Management
+vibesec versions              # List available versions
+vibesec update                # Update to latest version
+vibesec init --version v1.0.0 # Install specific version
 ```
 
 ## Development
