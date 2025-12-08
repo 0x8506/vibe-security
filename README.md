@@ -216,18 +216,6 @@ bun link
 vibesec --help
 ```
 
-Alternatively, run directly without global installation:
-
-```bash
-# From the cli directory
-npm run dev scan
-# Or using bun
-bun run dev scan
-
-# Or run the built version
-node dist/index.js scan
-```
-
 **Next Step:** After installation, follow the [Quick Start](#quick-start) guide above to install security guidelines for your AI assistant and start scanning.
 
 <!-- ### Scan Command
