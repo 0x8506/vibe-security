@@ -46,6 +46,77 @@ Vibe Security is a comprehensive security analysis tool designed specifically fo
 - Security-first code generation
 - Automated security reviews
 
+## Installation
+
+### Using npm (Recommended)
+
+```bash
+# Install globally
+npm install -g vibe-security
+
+# Or using bun
+bun install -g vibe-security
+```
+
+### Quick Start
+
+```bash
+# Install security guidelines for AI assistant
+vibesec init --ai claude    # For Claude
+vibesec init --ai cursor    # For Cursor
+vibesec init --ai windsurf  # For Windsurf
+vibesec init --ai copilot   # For GitHub Copilot
+vibesec init --ai antigravity # For Antigravity
+vibesec init --ai all       # For all assistants
+
+# Version Management
+vibesec versions              # List available versions
+vibesec update                # Update to latest version
+vibesec init --version v1.0.0 # Install specific version
+```
+
+## Usage
+
+### Claude Code
+
+The skill activates automatically when you request security scanning or code review. Just chat naturally:
+
+```
+Scan my code for security vulnerabilities
+Fix the SQL injection issues in my project
+Check my authentication implementation for security issues
+```
+
+### Cursor / Windsurf / Antigravity
+
+Use the slash command to invoke the skill:
+
+```
+/vibe-security Scan my code for security vulnerabilities
+/vibe-security Fix the SQL injection issues in my project
+/vibe-security Check my authentication implementation for security issues
+```
+
+### GitHub Copilot
+
+In VS Code with Copilot, type `/` in chat to see available prompts, then select vibe-security:
+
+```
+/vibe-security Scan my code for security vulnerabilities
+/vibe-security Fix the SQL injection issues in my project
+/vibe-security Check my authentication implementation for security issues
+```
+
+### Example Prompts
+
+- **Scan my code for security vulnerabilities**
+- **Fix hardcoded secrets in my project**
+- **Check for SQL injection vulnerabilities**
+- **Review my authentication implementation**
+- **Find and fix XSS vulnerabilities**
+- **Verify security best practices**
+- **Install security guidelines for Claude**
+
 ## Recommended AI Models
 
 ### For Best Security Analysis
@@ -117,77 +188,6 @@ We recommend using these AI models with Vibe Security for optimal security vulne
 - **For production deployments:** Claude Opus 4.5 provides unmatched security depth
 - **For daily development:** Claude Sonnet 4.5 provides the best speed/quality balance
 - **For cost optimization:** Use GPT-4o-mini for quick checks, escalate to full models for fixes
-
-## Installation
-
-### Using npm (Recommended)
-
-```bash
-# Install globally
-npm install -g vibe-security
-
-# Or using bun
-bun install -g vibe-security
-```
-
-### Quick Start
-
-```bash
-# Install security guidelines for AI assistant
-vibesec init --ai claude    # For Claude
-vibesec init --ai cursor    # For Cursor
-vibesec init --ai windsurf  # For Windsurf
-vibesec init --ai copilot   # For GitHub Copilot
-vibesec init --ai antigravity # For Antigravity
-vibesec init --ai all       # For all assistants
-
-# Version Management
-vibesec versions              # List available versions
-vibesec update                # Update to latest version
-vibesec init --version v1.0.0 # Install specific version
-```
-
-## Usage
-
-### Claude Code
-
-The skill activates automatically when you request security scanning or code review. Just chat naturally:
-
-```
-Scan my code for security vulnerabilities
-Fix the SQL injection issues in my project
-Check my authentication implementation for security issues
-```
-
-### Cursor / Windsurf / Antigravity
-
-Use the slash command to invoke the skill:
-
-```
-/vibe-security Scan my code for security vulnerabilities
-/vibe-security Fix the SQL injection issues in my project
-/vibe-security Check my authentication implementation for security issues
-```
-
-### GitHub Copilot
-
-In VS Code with Copilot, type `/` in chat to see available prompts, then select vibe-security:
-
-```
-/vibe-security Scan my code for security vulnerabilities
-/vibe-security Fix the SQL injection issues in my project
-/vibe-security Check my authentication implementation for security issues
-```
-
-### Example Prompts
-
-- **Scan my code for security vulnerabilities**
-- **Fix hardcoded secrets in my project**
-- **Check for SQL injection vulnerabilities**
-- **Review my authentication implementation**
-- **Find and fix XSS vulnerabilities**
-- **Verify security best practices**
-- **Install security guidelines for Claude**
 
 ### From Source
 
