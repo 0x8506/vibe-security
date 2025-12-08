@@ -230,7 +230,7 @@ node dist/index.js scan
 
 **Next Step:** After installation, follow the [Quick Start](#quick-start) guide above to install security guidelines for your AI assistant and start scanning.
 
-### Scan Command
+<!-- ### Scan Command
 
 ```bash
 # Scan current directory
@@ -291,7 +291,7 @@ src/api/users.ts
   │ SQL query built using string concatenation with user input
   │ const query = `SELECT * FROM users WHERE id = '${userId}'`;
   └ CWE-89 • A03:2021 - Injection
-```
+``` -->
 
 ### Security Categories Covered
 
@@ -318,7 +318,7 @@ src/api/users.ts
 - Go (.go)
 - Rust (.rs)
 
-## CI/CD Integration
+<!-- ## CI/CD Integration
 
 ### GitHub Actions
 
@@ -335,24 +335,24 @@ jobs:
         run: npm install -g vibe-security
       - name: Run Security Scan
         run: vibesec scan --format json
-```
+``` -->
 
-## Quick Fix Examples
+<!-- ## Quick Fix Examples
 
 ### SQL Injection
 
-**Before:** `db.query(\`SELECT _ FROM users WHERE id = '${userId}'\`)` 
+**Before:** `db.query(\`SELECT _ FROM users WHERE id = '${userId}'\`)`
 **After:**`db.query('SELECT _ FROM users WHERE id = ?', [userId])`
 
 ### XSS Prevention
 
-**Before:** `element.innerHTML = userInput`  
+**Before:** `element.innerHTML = userInput`
 **After:** `element.innerHTML = DOMPurify.sanitize(userInput)`
 
 ### Weak Cryptography
 
-**Before:** `crypto.createHash('md5').update(password).digest('hex')`  
-**After:** `await bcrypt.hash(password, 12)`
+**Before:** `crypto.createHash('md5').update(password).digest('hex')`
+**After:** `await bcrypt.hash(password, 12)` -->
 
 ## License
 
