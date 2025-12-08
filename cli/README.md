@@ -12,10 +12,6 @@ npm install -g vibe-security@latest                 # Update to latest version
 ## Usage
 
 ```bash
-# Security Scanning
-vibesec scan                # Scan for vulnerabilities
-vibesec verify              # Verify security posture
-
 # Install security rules for AI assistants
 vibesec init --ai claude      # Claude Code
 vibesec init --ai cursor      # Cursor
