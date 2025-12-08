@@ -61,15 +61,6 @@ bun install -g vibe-security
 ### Quick Start
 
 ```bash
-# Scan your project
-vibesec scan
-
-# Scan and auto-fix issues
-vibesec scan --fix
-
-# Verify security posture
-vibesec verify
-
 # Install security guidelines for AI assistant
 vibesec init --ai claude    # For Claude
 vibesec init --ai cursor    # For Cursor
