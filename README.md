@@ -117,6 +117,47 @@ In VS Code with Copilot, type `/` in chat to see available prompts, then select 
 - **Verify security best practices**
 - **Install security guidelines for Claude**
 
+### From Source
+
+If you've downloaded or cloned the source code:
+
+```bash
+# Navigate to the cli directory
+cd vibe-security/cli
+
+# Install dependencies
+npm install
+# Or using bun
+bun install
+
+# Build the project
+npm run build
+# Or using bun
+bun run build
+
+# Link globally (optional)
+npm link
+# Or using bun
+bun link
+
+# Now you can use vibesec command globally
+vibesec --help
+```
+
+Alternatively, run directly without global installation:
+
+```bash
+# From the cli directory
+npm run dev scan
+# Or using bun
+bun run dev scan
+
+# Or run the built version
+node dist/index.js scan
+```
+
+**Next Step:** After installation, follow the [Quick Start](#quick-start) guide above to install security guidelines for your AI assistant and start scanning.
+
 ### Scan Command
 
 ```bash
