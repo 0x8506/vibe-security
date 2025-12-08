@@ -2,6 +2,8 @@
 
 Security scanner and fixer for AI coding assistants - find, verify and fix security vulnerabilities.
 
+**Repository:** https://github.com/0x8506/vibe-security
+
 ## Installation
 
 ```bash
