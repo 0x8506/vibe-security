@@ -46,6 +46,68 @@ Vibe Security is a comprehensive security analysis tool designed specifically fo
 - Security-first code generation
 - Automated security reviews
 
+## Recommended AI Models
+
+### For Best Security Analysis
+
+We recommend using these AI models with Vibe Security for optimal security vulnerability detection and code fixing:
+
+#### **Claude Sonnet 4.5** (Recommended)
+
+- Best overall balance of speed and security analysis depth
+- Excellent at understanding security context and identifying subtle vulnerabilities
+- Provides safe remediation strategies with detailed explanations
+- Ideal for daily development and most security workflows
+
+#### **Claude Opus 4**
+
+- Most thorough for complex security audits and enterprise codebases
+- Deep reasoning capabilities for advanced vulnerability analysis
+- Best for critical security reviews and compliance requirements
+- Recommended for production deployments and sensitive applications
+
+#### **GPT-4o**
+
+- Fast and efficient for security-aware code generation
+- Good alternative with quick response times
+- Excellent for CI/CD integration and automated scanning
+- Cost-effective for large-scale projects
+
+#### **Claude Sonnet 4**
+
+- Faster alternative for quick security scans
+- Good balance of speed and accuracy
+- Suitable for rapid iteration during development
+
+#### **o1-preview**
+
+- Specialized for complex security architecture reviews
+- Advanced reasoning for intricate vulnerability chains
+- Best for security research and deep code audits
+
+#### **GPT-4o-mini**
+
+- Quick checks and preliminary scans
+- Most cost-effective option
+- Good for learning and educational use cases
+
+### Model Selection Guide
+
+| Use Case                       | Best Model        | Alternative       |
+| ------------------------------ | ----------------- | ----------------- |
+| **Quick Security Scan**        | Claude Sonnet 4.5 | GPT-4o            |
+| **Deep Security Audit**        | Claude Opus 4     | o1-preview        |
+| **Auto-Fix Vulnerabilities**   | Claude Sonnet 4.5 | GPT-4o            |
+| **Enterprise Compliance**      | Claude Opus 4     | Claude Sonnet 4.5 |
+| **Learning Security Concepts** | Claude Sonnet 4.5 | GPT-4o            |
+
+### Performance Tips
+
+- **For large codebases (1000+ files):** Use Claude Sonnet 4 or GPT-4o for faster scans
+- **For critical security reviews:** Use Claude Opus 4 with `--strict` mode
+- **For daily development:** Claude Sonnet 4.5 provides the best speed/quality balance
+- **For cost optimization:** Use GPT-4o-mini for quick checks, escalate to full models for fixes
+
 ## Installation
 
 ### Using npm (Recommended)
