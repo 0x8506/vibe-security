@@ -82,6 +82,61 @@ cp -r .windsurf/ /path/to/your/project/
 cp -r .agent/ /path/to/your/project/
 ```
 
+## Recommended AI Models
+
+### For Best Security Analysis
+
+We recommend using these AI models with Vibe Security for optimal security vulnerability detection and code fixing:
+
+#### **Claude Opus 4.5** (Recommended)
+
+- Most advanced model for comprehensive security analysis
+- Superior reasoning capabilities for complex vulnerability detection
+- Exceptional at identifying subtle security flaws and attack vectors
+- Best for critical security audits, enterprise codebases, and production deployments
+- Provides the most thorough security remediation strategies
+
+#### **Claude Sonnet 4.5**
+
+- Excellent balance of speed and security analysis depth
+- Great at understanding security context and identifying vulnerabilities
+- Provides safe remediation strategies with detailed explanations
+- Ideal for daily development and most security workflows
+
+#### **Claude Opus 4**
+
+- Powerful for complex security audits and enterprise codebases
+- Deep reasoning capabilities for advanced vulnerability analysis
+- Best for critical security reviews and compliance requirements
+- Recommended for production deployments and sensitive applications
+
+#### **GPT-4o**
+
+- Fast and efficient for security-aware code generation
+- Good alternative with quick response times
+- Excellent for CI/CD integration and automated scanning
+- Cost-effective for large-scale projects
+
+#### **Claude Sonnet 4**
+
+- Faster alternative for quick security scans
+- Good balance of speed and accuracy
+- Suitable for rapid iteration during development
+
+#### **o1-preview**
+
+- Specialized for complex security architecture reviews
+- Advanced reasoning for intricate vulnerability chains
+- Best for security research and deep code audits
+
+#### **GPT-4o-mini**
+
+- Quick checks and preliminary scans
+- Most cost-effective option
+- Good for learning and educational use cases
+
+> **Note**: If you're not using one of the recommended models above, consider upgrading for better security analysis results. Lower-tier models may miss subtle vulnerabilities or provide less accurate fix suggestions.
+
 ### Basic Usage
 
 #### 1. Run Security Scan
