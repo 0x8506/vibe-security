@@ -53,48 +53,88 @@ Extract key information from user request:
 
 ### Step 2: Run Security Scans
 
-Use grep or specialized tools to scan for vulnerabilities:
+**Advanced Analysis (Recommended):**
+
+```bash
+# AST-based semantic analysis (most accurate)
+python3 .github/scripts/ast_analyzer.py <file>
+
+# Data flow analysis (tracks tainted data)
+python3 .github/scripts/dataflow_analyzer.py <file>
+
+# CVE/dependency scanning
+python3 .github/scripts/cve_integration.py .
+
+# IaC security scanning
+python3 .github/scripts/iac_scanner.py .
+```
+
+**Quick Pattern Scanning:**
 
 ```bash
 # JavaScript/Node.js vulnerabilities
 grep -r "db\\.query.*\${" . --include="*.js"        # SQL injection
 grep -r "\\.innerHTML\\s*=" . --include="*.js"      # XSS
 grep -r "eval(" . --include="*.js"                  # Code injection
+grep -r "dangerouslySetInnerHTML" . --include="*.jsx" # React XSS
 
 # Python vulnerabilities
 grep -r "execute.*f\"" . --include="*.py"           # SQL injection
 grep -r "os\\.system" . --include="*.py"            # Command injection
 grep -r "pickle\\.loads" . --include="*.py"         # Deserialization
+grep -r "yaml\\.load\\(" . --include="*.py"         # Unsafe YAML
 
 # PHP vulnerabilities
 grep -r "mysqli_query.*\\$" . --include="*.php"     # SQL injection
 grep -r "\$_(GET|POST)" . --include="*.php"         # Unsanitized input
+
+# Go vulnerabilities
+grep -r "exec\\.Command.*\\+" . --include="*.go"    # Command injection
+grep -r "sql\\.Query.*\\+" . --include="*.go"       # SQL injection
+
+# Infrastructure (Terraform, K8s, Docker)
+grep -r "publicly_accessible.*=.*true" . --include="*.tf"  # Public resources
+grep -r "privileged:.*true" . --include="*.yaml"    # Privileged containers
+grep -r "USER root" . --include="Dockerfile"        # Root user
 ```
 
 ### Step 3: Analyze Vulnerabilities by Severity
 
-Prioritize fixes based on severity:
+**Use ML-Based Fix Suggestions:**
 
-**Critical** (Fix immediately):
+```bash
+# Get intelligent fix recommendations
+python3 .github/scripts/fix_engine.py \
+  --type sql-injection \
+  --language javascript \
+  --code "db.query(\`SELECT * FROM users WHERE id = \${id}\`)"
+```
 
-- SQL Injection
-- Remote Code Execution
-- Authentication Bypass
-- Hardcoded Secrets
+**Prioritize by Severity & Compliance:**
 
-**High** (Fix soon):
+**Critical** (Fix immediately - OWASP A03, PCI-DSS 6.5.1):
 
-- XSS (Cross-Site Scripting)
-- CSRF
-- Insecure Cryptography
-- Authorization Issues
+- SQL Injection (CWE-89)
+- Remote Code Execution (CWE-94)
+- Authentication Bypass (CWE-287)
+- Hardcoded Secrets (CWE-798)
+- Deserialization (CWE-502)
+
+**High** (Fix soon - OWASP A02, A07):
+
+- XSS (CWE-79)
+- CSRF (CWE-352)
+- Insecure Cryptography (CWE-327)
+- Authorization Issues (CWE-285)
+- Command Injection (CWE-78)
 
 **Medium** (Fix in sprint):
 
 - Missing Input Validation
-- Information Disclosure
+- Information Disclosure (CWE-200)
 - Weak Password Policy
 - Missing Security Headers
+- Path Traversal (CWE-22)
 
 **Low** (Technical debt):
 
@@ -103,7 +143,25 @@ Prioritize fixes based on severity:
 
 ### Step 4: Apply Security Fixes
 
-Systematically fix vulnerabilities:
+**Automated Fixes with Rollback:**
+
+```bash
+# Apply fix with automatic backup
+python3 .github/scripts/autofix_engine.py apply \
+  --file app.js \
+  --line 42 \
+  --type sql-injection \
+  --original "db.query(\`SELECT * FROM users WHERE id = \${id}\`)" \
+  --fixed "db.query('SELECT * FROM users WHERE id = $1', [id])"
+
+# Test the fix
+npm test
+
+# Rollback if tests fail
+python3 .github/scripts/autofix_engine.py rollback --fix-id 0
+```
+
+**Systematic Manual Fixes:**
 
 1. **Critical first** - Address immediate security risks
 2. **Validate inputs** - Add validation and sanitization
@@ -112,6 +170,55 @@ Systematically fix vulnerabilities:
 5. **Update cryptography** - Use modern algorithms
 6. **Test thoroughly** - Verify fixes work correctly
 7. **Re-scan** - Confirm all issues are resolved
+
+### Step 5: Generate Security Reports
+
+**Multiple Report Formats:**
+
+```bash
+# HTML report with charts and statistics
+python3 .github/scripts/reporter.py scan-results.json --format html -o security-report.html
+
+# SARIF for GitHub Code Scanning
+python3 .github/scripts/reporter.py scan-results.json --format sarif -o results.sarif
+
+# CSV for spreadsheet analysis
+python3 .github/scripts/reporter.py scan-results.json --format csv -o vulnerabilities.csv
+
+# JSON for CI/CD integration
+python3 .github/scripts/reporter.py scan-results.json --format json -o report.json
+```
+
+---
+
+## Advanced Features
+
+### Data Flow Analysis
+
+Track tainted data from user input to dangerous operations:
+
+```bash
+# Identify data flow vulnerabilities
+python3 .github/scripts/dataflow_analyzer.py src/
+```
+
+### Supply Chain Security
+
+Detect malicious dependencies and typosquatting:
+
+```bash
+# Scan for malicious packages
+python3 .github/scripts/cve_integration.py . --ecosystem npm
+```
+
+### Compliance Mapping
+
+Map vulnerabilities to standards (OWASP, CWE, MITRE ATT&CK, NIST, PCI-DSS):
+
+```bash
+# View compliance mappings
+cat .github/data/compliance-mapping.csv | grep sql-injection
+```
 
 ---
 

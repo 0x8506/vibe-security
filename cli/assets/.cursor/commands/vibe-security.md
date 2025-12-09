@@ -47,21 +47,40 @@ Extract key information from user request:
 
 ### Step 2: Run Security Scans
 
-Scan for common vulnerabilities:
+**Advanced Analysis:**
 
 ```bash
-# Scan current directory
-grep -r "db.query.*\${" . --include="*.js"
-grep -r "\.innerHTML\s*=" . --include="*.js"
-grep -r "eval(" . --include="*.js"
+# AST-based semantic analysis
+python3 .cursor/scripts/ast_analyzer.py <file>
 
-# Scan Python files
-grep -r "execute.*f\"" . --include="*.py"
-grep -r "os.system(" . --include="*.py"
+# Data flow tracking
+python3 .cursor/scripts/dataflow_analyzer.py <file>
 
-# Scan PHP files
-grep -r "mysqli_query.*\$" . --include="*.php"
-grep -r "\$_(GET|POST|REQUEST)" . --include="*.php"
+# CVE scanning
+python3 .cursor/scripts/cve_integration.py .
+```
+
+**Quick Pattern Scanning:**
+
+```bash
+# JavaScript/Node.js
+grep -r "db.query.*\${" . --include="*.js"           # SQL injection
+grep -r "\.innerHTML\s*=" . --include="*.js"        # XSS
+grep -r "eval(" . --include="*.js"                   # Code injection
+grep -r "dangerouslySetInnerHTML" . --include="*.jsx" # React XSS
+
+# Python
+grep -r "execute.*f\"" . --include="*.py"           # SQL injection
+grep -r "os.system(" . --include="*.py"              # Command injection
+grep -r "pickle.loads" . --include="*.py"            # Deserialization
+
+# PHP
+grep -r "mysqli_query.*\$" . --include="*.php"       # SQL injection
+grep -r "\$_(GET|POST|REQUEST)" . --include="*.php" # Unsanitized input
+
+# Infrastructure
+grep -r "publicly_accessible.*=.*true" . --include="*.tf"  # Terraform
+grep -r "privileged:.*true" . --include="*.yaml"    # Kubernetes
 ```
 
 ### Step 3: Analyze Vulnerabilities by Severity
@@ -91,6 +110,57 @@ grep -r "\$_(GET|POST|REQUEST)" . --include="*.php"
 
 - Code Quality Issues
 - Best Practice Violations
+
+### Step 4: Get Fix Suggestions
+
+```bash
+# ML-based fix recommendations
+python3 .cursor/scripts/fix_engine.py \
+  --type sql-injection \
+  --language javascript \
+  --code "db.query(\`SELECT * FROM users WHERE id = \${id}\`)"
+```
+
+### Step 5: Apply Fixes with Rollback
+
+```bash
+# Auto-fix with backup
+python3 .cursor/scripts/autofix_engine.py apply \
+  --file app.js --line 42 --type sql-injection \
+  --original "db.query(\`SELECT...\`)" \
+  --fixed "db.query('SELECT...', [id])"
+
+# Rollback if needed
+python3 .cursor/scripts/autofix_engine.py rollback
+```
+
+### Step 6: Generate Reports
+
+```bash
+# HTML report
+python3 .cursor/scripts/reporter.py results.json --format html -o report.html
+
+# SARIF for Code Scanning
+python3 .cursor/scripts/reporter.py results.json --format sarif -o results.sarif
+```
+
+---
+
+## Advanced Features
+
+### Compliance Mapping
+
+- OWASP Top 10 2021
+- CWE IDs
+- MITRE ATT&CK
+- NIST Controls
+- PCI-DSS
+
+### Supported Languages (18+)
+
+- JavaScript, TypeScript, Python, PHP, Java, Go, Ruby, C#
+- Kotlin, Swift, Rust, Scala, Elixir, Solidity
+- Terraform, Kubernetes, Docker, CloudFormation
 
 ---
 

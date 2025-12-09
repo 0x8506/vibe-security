@@ -52,7 +52,23 @@ Extract key information from user request:
 
 ### Step 2: Run Security Scans
 
-Use the Vibe Security CLI to scan code:
+**Advanced Analysis:**
+
+```bash
+# AST-based semantic analysis
+python3 .agent/scripts/ast_analyzer.py <file>
+
+# Data flow analysis
+python3 .agent/scripts/dataflow_analyzer.py <file>
+
+# CVE & dependency scanning
+python3 .agent/scripts/cve_integration.py .
+
+# Supply chain security
+python3 .agent/scripts/cve_integration.py . --ecosystem npm
+```
+
+**CLI Scanning:**
 
 ```bash
 # Scan current directory
@@ -63,6 +79,10 @@ npx vibe-security scan --file path/to/file.js
 
 # Scan with specific rules
 npx vibe-security scan --rules sql-injection,xss,auth
+
+# Infrastructure scanning
+grep -r "publicly_accessible.*=.*true" . --include="*.tf"
+grep -r "privileged:.*true" . --include="*.yaml"
 ```
 
 ### Step 3: Analyze Vulnerabilities
@@ -74,15 +94,58 @@ Review scan results by severity:
 - **Medium**: Security weakness (weak validation, info disclosure)
 - **Low**: Best practice violation (missing headers, weak passwords)
 
-### Step 4: Fix Vulnerabilities
+### Step 4: Get Fix Suggestions
 
-Apply security fixes systematically:
+**ML-Based Recommendations:**
+
+```bash
+# Get intelligent fix suggestions
+python3 .agent/scripts/fix_engine.py \
+  --type sql-injection \
+  --language javascript \
+  --code "db.query(\`SELECT * FROM users WHERE id = \${userId}\`)"
+```
+
+### Step 5: Apply Fixes with Rollback
+
+**Automated Fix Engine:**
+
+```bash
+# Apply fix with backup
+python3 .agent/scripts/autofix_engine.py apply \
+  --file app.js --line 45 --type sql-injection \
+  --original "db.query(\`SELECT...\`)" \
+  --fixed "db.query('SELECT...', [userId])"
+
+# Batch apply fixes
+python3 .agent/scripts/autofix_engine.py batch --file fixes.json
+
+# Rollback if needed
+python3 .agent/scripts/autofix_engine.py rollback
+```
+
+**Manual Fixes:**
 
 1. **Critical first** - Fix critical vulnerabilities immediately
 2. **Validate inputs** - Add input validation and sanitization
 3. **Secure outputs** - Add output encoding/escaping
 4. **Test fixes** - Verify fixes don't break functionality
 5. **Re-scan** - Run security scan again to confirm fixes
+
+### Step 6: Generate Reports
+
+**Multiple Formats:**
+
+```bash
+# HTML with charts and statistics
+python3 .agent/scripts/reporter.py results.json --format html -o report.html
+
+# SARIF for CI/CD integration
+python3 .agent/scripts/reporter.py results.json --format sarif -o results.sarif
+
+# JSON for automation
+python3 .agent/scripts/reporter.py results.json --format json -o report.json
+```
 
 ---
 

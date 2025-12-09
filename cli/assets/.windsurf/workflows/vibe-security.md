@@ -52,19 +52,38 @@ Extract key information from user request:
 
 ### Step 2: Run Security Scans
 
-Use the Vibe Security CLI or grep patterns to scan code:
+**Advanced Analysis (Recommended):**
 
 ```bash
-# Scan current directory
-npx vibe-security scan
+# AST-based semantic analysis (most accurate)
+python3 .windsurf/scripts/ast_analyzer.py <file>
 
-# Scan specific file
+# Data flow analysis (tracks tainted data)
+python3 .windsurf/scripts/dataflow_analyzer.py <file>
+
+# CVE & dependency scanning
+python3 .windsurf/scripts/cve_integration.py .
+
+# Supply chain security
+python3 .windsurf/scripts/cve_integration.py . --ecosystem npm
+```
+
+**Quick Scanning:**
+
+```bash
+# CLI tool (if available)
+npx vibe-security scan
 npx vibe-security scan --file path/to/file.js
 
-# Manual scans with grep
+# Manual pattern scanning
 grep -r "db\\.query.*\${" . --include="*.js"    # SQL injection
 grep -r "\\.innerHTML\\s*=" . --include="*.js"  # XSS
 grep -r "eval(" . --include="*.js"              # Code injection
+grep -r "dangerouslySetInnerHTML" . --include="*.jsx" # React XSS
+
+# Infrastructure scanning
+grep -r "publicly_accessible.*=.*true" . --include="*.tf"
+grep -r "privileged:.*true" . --include="*.yaml"
 ```
 
 ### Step 3: Analyze Vulnerabilities
@@ -76,15 +95,61 @@ Review scan results by severity:
 - **Medium**: Security weakness (weak validation, info disclosure)
 - **Low**: Best practice violation (missing headers, weak passwords)
 
-### Step 4: Fix Vulnerabilities
+### Step 4: Get Fix Suggestions
 
-Apply security fixes systematically:
+**ML-Based Fix Engine:**
+
+```bash
+# Get intelligent fix recommendations
+python3 .windsurf/scripts/fix_engine.py \
+  --type sql-injection \
+  --language javascript \
+  --code "db.query(\`SELECT * FROM users WHERE id = \${userId}\`)"
+
+# Outputs: Fixed code, explanation, test, recommendations, confidence
+```
+
+### Step 5: Apply Fixes with Rollback
+
+**Auto-Fix Engine:**
+
+```bash
+# Apply fix with automatic backup
+python3 .windsurf/scripts/autofix_engine.py apply \
+  --file app.js --line 45 --type sql-injection \
+  --original "db.query(\`SELECT...\`)" \
+  --fixed "db.query('SELECT * FROM users WHERE id = $1', [userId])"
+
+# Test changes
+npm test
+
+# Rollback if needed
+python3 .windsurf/scripts/autofix_engine.py rollback
+
+# View history
+python3 .windsurf/scripts/autofix_engine.py history
+```
+
+**Manual Fixes:**
 
 1. **Critical first** - Fix critical vulnerabilities immediately
 2. **Validate inputs** - Add input validation and sanitization
 3. **Secure outputs** - Add output encoding/escaping
 4. **Test fixes** - Verify fixes don't break functionality
 5. **Re-scan** - Run security scan again to confirm fixes
+
+### Step 6: Generate Reports
+
+```bash
+# HTML report with charts
+python3 .windsurf/scripts/reporter.py results.json --format html -o report.html
+
+# SARIF for GitHub Code Scanning
+python3 .windsurf/scripts/reporter.py results.json --format sarif -o results.sarif
+
+# CSV for analysis
+python3 .windsurf/scripts/reporter.py results.json --format csv -o vulns.csv
+```
 
 ---
 
