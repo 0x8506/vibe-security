@@ -50,7 +50,7 @@ Vibe Security is a comprehensive security analysis tool designed specifically fo
 
 - Security guidelines for Claude, Cursor, Windsurf, Copilot, Antigravity
 - Security-first code generation
-- Automated security reviews
+- Automated security review
 
 ## Installation
 
