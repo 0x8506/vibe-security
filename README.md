@@ -8,11 +8,11 @@ An AI-powered security scanner and fixer for Vibe Coder that finds, verifies, an
   <img src="https://img.shields.io/badge/CWE-Compliant-blue?style=for-the-badge" alt="CWE Compliant">
 </p>
 
-<p align="center">
+<!-- <p align="center">
   <a href="https://www.buymeacoffee.com/0x8506" target="_blank">
     <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" >
   </a>
-</p>
+</p> -->
 
 ## Overview
 
