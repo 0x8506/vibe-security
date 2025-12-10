@@ -39,7 +39,7 @@ bun run src/index.ts --help
 # Build
 bun run build
 
-# Link for local testing
+# Link for local
 bun link
 ```
 
